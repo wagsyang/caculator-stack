@@ -1,0 +1,1 @@
+A simple caculator implemented by using the stack stategy.
