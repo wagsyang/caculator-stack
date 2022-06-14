@@ -13,7 +13,7 @@ MidLayer::~MidLayer()
 
 void MidLayer::caculateExpression(QString expStr)
 {   
-    QString midfixExpStr = expStr;
+    std::string midfixExpStr = expStr.toStdString();
     // check expression validation
     if(!Expression::iExpStrValidate(midfixExpStr)){
         emit infoExpressionInvalidate();

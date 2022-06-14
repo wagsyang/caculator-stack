@@ -1,8 +1,11 @@
 #pragma once
 #include <QObject>
+#include <string>
+#include <algorithm>
+#include <iostream>
 
 /**
- * @brief expression operation
+ * @brief expression operation( operant:integer operator:+-/* ) 
  * 
  */
 class Expression: public QObject {
@@ -10,8 +13,8 @@ class Expression: public QObject {
 public:
     explicit Expression(QObject* parent = nullptr);
 
-    static bool iExpStrValidate(QString midfixExpStr);
-    static QString midfixToPostfix(QString midfixExpStr);
-    static int caculatePostfix(QString postfixExpStr);
+    static bool iExpStrValidate(const std::string &midfixExpStr);
+    static std::string midfixToPostfix(const std::string &midfixExpStr);
+    static int caculatePostfix(const std::string &postfixExpStr);
 };
 

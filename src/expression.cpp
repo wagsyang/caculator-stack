@@ -5,11 +5,39 @@
  * 
  * @return validation 
  */
-bool Expression::iExpStrValidate(QString midfixExpStr)
+bool Expression::iExpStrValidate(const std::string& midfixExpStr)
 {
-    bool validation;
-    //TODO:
-    return validation;
+    std::string str = "";
+
+    // ignore blank
+    for (auto s: midfixExpStr)
+        if (s!=' ') str.append(1, s);
+    
+    if(str.empty() || !isdigit(str.at(0)) || !isdigit(str.at(str.length()-1)))
+        return false;
+    
+    int i=0;
+    for (; i<str.length(); i++)
+    {
+        // to the first no digit
+        if(i==str.length()-1) return true;
+        if(!isdigit(str.at(i))) break;
+    }
+
+    while(i < str.length())
+    {
+        // operant operator operant ... operant
+        if(str.at(i)=='+' || str.at(i)=='-' || str.at(i)=='*' || str.at(i)=='/'){
+            if(++i<str.length() && isdigit(str.at(i))){
+                while(i<str.length() && isdigit(str.at(i)))
+                    i++;
+                if(i==str.length()) return true;
+            }
+            else break;
+        }
+        else break;
+    }
+    return false;
 }
 
 /**
@@ -18,9 +46,9 @@ bool Expression::iExpStrValidate(QString midfixExpStr)
  * @param midfixExpStr 
  * @return std::string 
  */
-QString Expression::midfixToPostfix(QString midfixExpStr)
+std::string Expression::midfixToPostfix(const std::string& midfixExpStr)
 {
-    QString  postfixExpStr;
+    std::string  postfixExpStr;
     //TODO:
     return postfixExpStr;
 }
@@ -31,7 +59,7 @@ QString Expression::midfixToPostfix(QString midfixExpStr)
  * @param postfixExpStr 
  * @return int 
  */
-int Expression::caculatePostfix(QString postfixExpStr)
+int Expression::caculatePostfix(const std::string& postfixExpStr)
 {
     int caculateResult;
     //TODO:
