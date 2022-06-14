@@ -16,6 +16,10 @@ find_package(Qt5 COMPONENTS Core Gui Quick REQUIRED)
 
 set (SRCS
     main.cpp
+    expression.h
+    expression.cpp
+    midlayer.h
+    midlayer.cpp
     qml.qrc
 )
 

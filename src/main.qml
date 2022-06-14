@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
-//import model
+import com.caculator.desktop.MidLayer 1.1
 
 Window {
     id: mainwindow
@@ -31,7 +31,7 @@ Window {
             }
             onAccepted: {
                 // TODO: send expression to model after Return/Enter pressed
-                // model.caculateExpression(expressionField.text){}
+                MidLayer.caculateExpression(expressionField.text)
             }
         }
         TextField {
@@ -61,7 +61,7 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: function(){
             // TODO:slot in model(mvc)
-            // model.caculateExpression(expressionField.text){}
+            MidLayer.caculateExpression(expressionField.text)
         }
     }
 
@@ -75,7 +75,7 @@ Window {
     }
 
     Connections {
-        target: model
+        target: MidLayer
 
         function onInfoExpressionInvalidate(){
             resultField.color="red"
@@ -83,7 +83,7 @@ Window {
             cleanTimer.start()
         }
 
-        function onShowCaculateResult(result){
+        function onSendCaculateResult(result){
             resultField.text=result
         }
     }

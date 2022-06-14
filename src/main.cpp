@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "midlayer.h"
 
 
 int main(int argc, char *argv[])
@@ -8,6 +9,18 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+  qmlRegisterSingletonType<MidLayer>(
+    "com.caculator.desktop.MidLayer", 1, 1,
+    "MidLayer", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+      Q_UNUSED(engine)
+      Q_UNUSED(scriptEngine)
+      MidLayer *midLayer = new MidLayer();
+      return midLayer;
+    });
+
+  // Set up logging
+//   qInstallMessageHandler(messageHandler);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
