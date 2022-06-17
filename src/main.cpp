@@ -19,9 +19,6 @@ int main(int argc, char *argv[])
       return midLayer;
     });
 
-  // Set up logging
-//   qInstallMessageHandler(messageHandler);
-
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

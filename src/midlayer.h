@@ -4,6 +4,7 @@
 #include <QQmlEngine>
 #include <QString>
 #include "expression.h"
+#include <iostream>
 
 
 class MidLayer : public QObject {
@@ -22,5 +23,7 @@ class MidLayer : public QObject {
  public slots:
   void caculateExpression(QString expStr);
 
+private:
+  Expression* expression  = new Expression();
 };
 

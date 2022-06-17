@@ -30,7 +30,7 @@ Window {
                 color: "#293846"
             }
             onAccepted: {
-                // TODO: send expression to model after Return/Enter pressed
+                // slot: send expression to model after Return/Enter pressed
                 MidLayer.caculateExpression(expressionField.text)
             }
         }
@@ -60,7 +60,7 @@ Window {
         anchors.bottomMargin: 150   
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: function(){
-            // TODO:slot in model(mvc)
+            // slot: send expression to model after Button pressed
             MidLayer.caculateExpression(expressionField.text)
         }
     }

@@ -13,15 +13,16 @@ MidLayer::~MidLayer()
 
 void MidLayer::caculateExpression(QString expStr)
 {   
-    std::string midfixExpStr = expStr.toStdString();
+    std::string expression_str = expStr.toStdString();
     // check expression validation
-    if(!Expression::iExpStrValidate(midfixExpStr)){
+    if(! expression->expresionValidation(expression_str)){
         emit infoExpressionInvalidate();
         return;
     }
 
-    // caculate expression 
-    int result = Expression::caculatePostfix(Expression::midfixToPostfix(midfixExpStr));
+    // caculate expression
+    expression->caculateExpressionResult();
+    int result = expression->getExpressionResult();
     QString resStr;
     emit sendCaculateResult(resStr.setNum(result));
 }

@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Core Gui Quick REQUIRED)
 
-
+# add_compile_options(-std=c++11 -Wall)
 
 set (SRCS
     main.cpp
