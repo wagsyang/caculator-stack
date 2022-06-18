@@ -35,6 +35,7 @@ void Expression::caculateExpressionResult()
                 tmp_stack.push(m*n);
                 break;
             case PRIORITY_DIV:
+                // TODO: throw when divide by zero 
                 tmp_stack.push(m/n);
                 break;
             default:
