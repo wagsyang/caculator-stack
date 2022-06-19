@@ -35,7 +35,6 @@ void Expression::caculateExpressionResult()
                 tmp_stack.push(m*n);
                 break;
             case PRIORITY_DIV:
-                // TODO: throw when divide by zero 
                 tmp_stack.push(m/n);
                 break;
             default:
@@ -95,8 +94,10 @@ bool Expression::generatePaticle(std::string exp_str)
     for(auto s: exp_str){
         auto itr = priority_map.find(s);
         if(itr != priority_map.end()){
-            vec.push_back(tmp);
-            tmp="";
+            if(!tmp.empty()){
+                vec.push_back(tmp);
+                tmp="";
+            }
             vec.push_back(itr->second);
         }
         else{
@@ -146,6 +147,12 @@ bool Expression::generatePaticle(std::string exp_str)
     }
     for(auto i = 1; i < exp_paticle.size(); i+=2){
         if(exp_paticle.at(i).type != TYPE_OPERATOR) return false;
+    }
+
+    // illegal divided by zero
+    for(auto i = 0; i < exp_paticle.size()-1; i+=1){
+        if(exp_paticle.at(i).content == "/" &&
+           exp_paticle.at(i+1).content == "0") return false;
     }
 
     // save to obj after checking successfully
